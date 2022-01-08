@@ -4,6 +4,9 @@ import { VendorprofileComponent } from './vendorprofile/vendorprofile.component'
 import { RouterModule, Routes } from '@angular/router';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { LzeroPipe } from '../pipes/lzero.pipe';
+import { FilterbyidPipe } from '../pipes/filterbyid.pipe';
+
 const routes: Routes = [
 {
   path:'profile',
@@ -18,6 +21,8 @@ const routes: Routes = [
   declarations: [
     VendorprofileComponent,
     FilterPipe,
+    LzeroPipe,
+    FilterbyidPipe
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,10 @@ export class VendorprofileComponent implements OnInit {
   
   filterVendorData : string="";
 
+  filterByName : boolean=true;
+
+  filterById : boolean=false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,7 +22,7 @@ export class VendorprofileComponent implements OnInit {
   
   VendorDetails : any[]=[
     {
-      Id:14633,
+      Id:'00014633',
       VendorName: 'GARY ROLLING STORE',
       FirstLicense:'6/7/2011',
       LastLicense:'7/1/2014',
@@ -26,7 +30,7 @@ export class VendorprofileComponent implements OnInit {
       City:'HARTFORD',
     },
     {
-      Id:17998,
+      Id:'00017998',
       VendorName: 'BROWN SMOKE LLC',
       FirstLicense:'7/1/2018',
       LastLicense:'7/1/2018',
@@ -34,15 +38,15 @@ export class VendorprofileComponent implements OnInit {
       City:'WINDSOR',
     },
     {
-      Id:18060,
-      VendorName: 'GARY ROLLING STORE',
+      Id:'00018060',
+      VendorName: 'AJ HOT DOG LLC',
       FirstLicense:'6/7/2011',
       LastLicense:'7/1/2014',
       Address:'1132 ALBANY AV',
       City:'WINDSOR',
     },
     {
-      Id:11191,
+      Id:'00011191',
       VendorName: 'L.L.L. HOT DOGS',
       FirstLicense:'6/7/2011',
       LastLicense:'7/1/2014',
@@ -50,24 +54,24 @@ export class VendorprofileComponent implements OnInit {
       City:'HARTFORD',
     },
     {
-      Id:14633,
-      VendorName: 'GARY ROLLING STORE',
+      Id:'00014623',
+      VendorName: 'CRISTINA FOOD WAGON',
       FirstLicense:'6/7/2011',
       LastLicense:'7/1/2014',
       Address:'1132 ALBANY AV',
       City:'HARTFORD',
     },
     {
-      Id:14633,
-      VendorName: 'GARY ROLLING STORE',
+      Id:'00043414',
+      VendorName: 'BEARS SMOKEHOUSE BBQ',
       FirstLicense:'6/7/2011',
       LastLicense:'7/1/2014',
       Address:'1132 ALBANY AV',
       City:'HARTFORD',
     },
     {
-      Id:14633,
-      VendorName: 'GARY ROLLING STORE',
+      Id:'00074523',
+      VendorName: 'HIGH WATER KITCHEN LLC',
       FirstLicense:'6/7/2011',
       LastLicense:'7/1/2014',
       Address:'1132 ALBANY AV',
@@ -75,5 +79,16 @@ export class VendorprofileComponent implements OnInit {
     },
     
   ]; 
+
+  filterByNameEvent() {
+    this.filterVendorData="";
+    this.filterById=false;
+    this.filterByName=true;
+  }
+  filterByIdEvent(){
+    this.filterVendorData="";
+    this.filterByName=false;
+    this.filterById=true;
+  }
 
 }
