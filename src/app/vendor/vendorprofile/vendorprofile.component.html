@@ -1,0 +1,18 @@
+<div class="headerStyle">
+  <header><h2>Vendor details</h2></header>
+</div>
+<div class="container">
+<div class="filterStyle"><h4>Filter By Name :</h4><input class="inputStyle" placeholder="Search..." autofocus name="filterVendorData" [(ngModel)]="filterVendorData" /></div>
+<div class="cardContainer">
+    <section *ngFor="let V of VendorDetails |filter:(filterVendorData|uppercase) " class="cardCustom">
+      <div class="alignContainer">
+        <h4>ID : {{V.Id}} </h4>
+        <h4>Name : {{V.VendorName}}</h4>
+        <h4>License :</h4>
+        <p class="date">{{V.FirstLicense}}-{{V.LastLicense}}</p>
+        <p>Address : {{V.Address}}</p>
+        <p>City : {{V.City}}</p>
+      </div>
+      </section>
+    </div>
+</div>
