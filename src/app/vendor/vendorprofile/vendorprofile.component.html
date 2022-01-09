@@ -38,3 +38,21 @@
         </section>
       </div>
   </div>
+
+  <div ngClass="formStyle">
+    <form [formGroup]="Data" (ngSubmit)="postData(Data.value)">
+      <div class="form-group">
+    <label ngClass="labelStyle2" for="UserName">User Name:</label>
+    <input class="inputStyle" formControlName="UserName" type="text"/></div>
+    <br>
+    <div class="form-group"><label ngClass="labelStyle2" for="EmailId">Email Id:</label>
+    <input class="inputStyle" formControlName="EmailId" type="email"/>
+  </div>
+  <br>
+    <div  class="form-group"><label ngClass="labelStyle2"  for="Password">Password:</label>
+    <input class="inputStyle" formControlName="Password" type="password"/>
+  </div>
+  <br>
+    <input ngClass="buttonStyle" type="submit" />
+  </form>
+  </div>

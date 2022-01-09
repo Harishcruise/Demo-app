@@ -1,4 +1,6 @@
 import { Component, OnInit, Pipe } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, PatternValidator } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -15,70 +17,35 @@ export class VendorprofileComponent implements OnInit {
 
   filterById : boolean=false;
 
-  constructor() { }
+  Data : FormGroup;
+
+  email : string ="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/";
+
+  constructor(private api: ApiService, private formBuilder:FormBuilder ) { 
+    // this.api.getData().subscribe((res)=>{
+    //   this.VendorDetails=res;
+    //   console.log(res);
+    // })
+    this.api.getData().subscribe((res)=>{
+      console.log(Object.keys(res).length);
+      for (let index = 1; index < Object.keys(res).length+1; index++) {
+        this.VendorDetails.push(res[index]);
+        console.log(this.VendorDetails);
+      }
+    })
+
+    this.Data=this.formBuilder.group({
+      UserName:["",Validators.required],
+      EmailId:["",Validators.required],
+      Password:["",Validators.required],
+
+    })
+  }
 
   ngOnInit(): void {
   }
   
-  VendorDetails : any[]=[
-    {
-      Id:'00014633',
-      VendorName: 'GARY ROLLING STORE',
-      FirstLicense:'6/7/2011',
-      LastLicense:'7/1/2014',
-      Address:'1132 ALBANY AV',
-      City:'HARTFORD',
-    },
-    {
-      Id:'00017998',
-      VendorName: 'BROWN SMOKE LLC',
-      FirstLicense:'7/1/2018',
-      LastLicense:'7/1/2018',
-      Address:'938 BLOOMFIELD AV',
-      City:'WINDSOR',
-    },
-    {
-      Id:'00018060',
-      VendorName: 'AJ HOT DOG LLC',
-      FirstLicense:'6/7/2011',
-      LastLicense:'7/1/2014',
-      Address:'1132 ALBANY AV',
-      City:'WINDSOR',
-    },
-    {
-      Id:'00011191',
-      VendorName: 'L.L.L. HOT DOGS',
-      FirstLicense:'6/7/2011',
-      LastLicense:'7/1/2014',
-      Address:'71 FREEMAN ST',
-      City:'HARTFORD',
-    },
-    {
-      Id:'00014623',
-      VendorName: 'CRISTINA FOOD WAGON',
-      FirstLicense:'6/7/2011',
-      LastLicense:'7/1/2014',
-      Address:'1132 ALBANY AV',
-      City:'HARTFORD',
-    },
-    {
-      Id:'00043414',
-      VendorName: 'BEARS SMOKEHOUSE BBQ',
-      FirstLicense:'6/7/2011',
-      LastLicense:'7/1/2014',
-      Address:'1132 ALBANY AV',
-      City:'HARTFORD',
-    },
-    {
-      Id:'00074523',
-      VendorName: 'HIGH WATER KITCHEN LLC',
-      FirstLicense:'6/7/2011',
-      LastLicense:'7/1/2014',
-      Address:'1132 ALBANY AV',
-      City:'HARTFORD',
-    },
-    
-  ]; 
+  VendorDetails : any[]=[];
 
   filterByNameEvent() {
     this.filterVendorData="";
@@ -89,6 +56,19 @@ export class VendorprofileComponent implements OnInit {
     this.filterVendorData="";
     this.filterByName=false;
     this.filterById=true;
+  }
+  postData(data:any){
+    console.log("hi");
+    this.api.postData(data).subscribe((res)=>{
+      console.log(res);
+      if(res.UserName == "" || res.EmailId == "" || res.Password ==""){
+        console.log('yes');
+        alert("Please Enter the data in Forms")
+      }
+      if(res.UserName !="" && res.EmailId != "" && res.Password !=""){
+        alert("Your Data has been sent successfully")
+      }
+    });
   }
 
 }
